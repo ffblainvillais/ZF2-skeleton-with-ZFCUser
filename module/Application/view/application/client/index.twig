@@ -1,0 +1,61 @@
+{% block content %}
+
+    <h1>Liste Clients</h1>
+
+    <form method="post" action="{{ url('addClient') }}">
+
+        <label for="name">Nom</label>
+        <input type="text" name="name"/><br/>
+
+        <label for="firstname">Prénom</label>
+        <input type="text" name="firstname"/></br>
+
+        <label for="mail">Mail</label>
+        <input type="text" name="mail"/></br>
+
+        <label for="phone">Téléphone</label>
+        <input type="text" name="phone"/></br>
+
+        <label for="address">Adresse</label>
+        <input type="text" name="address"/></br>
+
+        <input class="btn btn-primary" type="submit"/>
+
+    </form>
+
+    <br/>
+
+    {% if customers == null %}
+        <p>Il n'y à pas encore de client</p>
+    {% else %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> Nom </th>
+                <th> Prenom </th>
+                <th> Adresse </th>
+                <th> Mail </th>
+                <th> Telephone </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td> {{customer.nom}} </td>
+                <td> {{customer.prenom}}</td>
+                <td> {{customer.adresse}}</td>
+                <td> {{customer.mail}}</td>
+                <td> {{customer.telephone}}</td>
+                <td>
+                    <a href="{{ url("delClient", {"idClient" : customer.id}) }}"><span class="glyphicon glyphicon-trash"></span> supprimer le client</a> <br/>
+                    <a href="{{ url("modClientPage", {"idClient" : customer.id}) }}"><span class="glyphicon glyphicon-pencil"></span> modifier le client</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endblock %}

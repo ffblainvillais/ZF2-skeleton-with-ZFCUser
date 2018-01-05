@@ -7,6 +7,8 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
+Namespace Application;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -50,6 +52,81 @@ return array(
                     ),
                 ),
             ),
+            /*'clients' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/clients',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),*/
+            'clients' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/clients',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
+            'addClient' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/addClient',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'addCustomer',
+                    ],
+                ],
+            ],
+            'delClient' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/delClient/:idClient',
+                    'constraints' => array(
+                        'idClient' => '[0-9]*',
+                    ),
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'delCustomer',
+                    ],
+                ],
+            ],
+            'modClientPage' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/modClientPage/:idClient',
+                    'constraints' => array(
+                        'idClient' => '[0-9]*',
+                    ),
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'modCustomerPage',
+                    ],
+                ],
+            ],
+            'modClient' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/modClient/:idClient',
+                    'constraints' => array(
+                        'idClient' => '[0-9]*',
+                    ),
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Client',
+                        'action'        => 'modCustomer',
+                    ],
+                ],
+            ],
         ),
     ),
     'translator' => array(
@@ -60,6 +137,20 @@ return array(
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
             ),
+        ),
+    ),
+    'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            )
         ),
     ),
     'service_manager' => array(
@@ -76,8 +167,12 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
         ),
+        'factories' => [
+            'Application\Controller\Client' => 'Application\Factory\ClientControllerFactory',
+        ]
+
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
