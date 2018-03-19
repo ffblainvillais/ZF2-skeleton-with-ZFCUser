@@ -1,0 +1,25 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('home') }}">Zf-skeleton</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="<?php echo $this->url('home') ?>">Accueil</a></li>
+            </ul>
+            <ul  style="vertical-align: middle;" class="nav navbar-nav navbar-right">
+                {% if not zfcUserIdentity() %}
+                    <li><a href={{ url('zfcuser/login') }}>Connexion</a></li>
+                {% else %}
+                    <li ><span style="color : white; "><a href={{ url('zfcuser') }}>{{ zfcUserIdentity.getDisplayname }}()</a> | <a href="{{ url('zfcuser/logout') }}">Deconnexion</a></span></li>
+                {% endif %}
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>

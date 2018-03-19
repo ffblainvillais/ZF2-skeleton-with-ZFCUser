@@ -1,0 +1,68 @@
+{#<?php#}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1" />
+    {#<link rel="icon" type="image/png" href="{{ url('home') }}images/favicon.png" />#}
+
+    {% set title = 'Zf-skeleton' %}
+    <title>
+        {% block title %}
+            {{ title }}
+        {% endblock %}
+    </title>
+
+    {#{% include 'layout/commons/favicons' %}#}
+
+    {# Styles #}
+    {% block styles %}
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+    {% endblock %}
+
+    {% block top_javascript %}
+        <script type='text/javascript' src='/js/jquery.min.js'></script>
+        <script type='text/javascript' src='/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='/js/respond.min.js'></script>
+        <script type='text/javascript' src='/js/html5shiv.js'></script>
+    {% endblock %}
+
+
+</head>
+<body>
+{% block header %}
+    <header>
+        {% include '/application/index/commons/main-menu' %}
+    </header>
+{% endblock %}
+
+
+<main class="main_content">
+
+    {% block content %}
+        {{ content|raw }}
+    {% endblock %}
+
+</main>
+
+{% block footer %}
+    {#{% include '/application/index/footer' %}#}
+{% endblock %}
+
+{% block notification %}
+    {#{% include 'layout/commons/notification' %}#}
+{% endblock %}
+
+
+{% block bottom_javascripts %}
+    {#<script type='text/javascript' src='/js/app.js'></script>#}
+{% endblock %}
+
+
+{% block flash_messages %}
+    {#{% include '/layout/notification' %}#}
+{% endblock %}
+
+
+</body>
+</html>
