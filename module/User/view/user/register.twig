@@ -5,25 +5,9 @@
 
     <section class="login-container">
 
+        <h2 class="form-signin-heading">Inscription</h2>
+
         {{ form(registerForm) }}
-
-        <form class="form-register" action="{{ url('zfcuser/register') }}" method="post">
-            <h2 class="form-signin-heading">Inscription</h2>
-
-            <label for="username">Identifiant</label>
-            <input type="text" name="username" class="form-control" placeholder="Mon identifiant" required autofocus>
-
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control" placeholder="name@mail.com" required autofocus>
-
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" class="form-control" placeholder="Mot de passe" required autofocus>
-
-            <label for="inputEmail">Verification mot de passe</label>
-            <input type="password" name="passwordVerify" class="form-control" placeholder="Mot de passe" required autofocus><br/>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
-        </form>
 
     </section>
 
