@@ -16,6 +16,7 @@
     {# Styles #}
     {% block styles %}
         <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/form.css" rel="stylesheet">
         <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
         <link href="/css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
@@ -39,6 +40,10 @@
 
 <main class="main_content">
 
+    {% block flash_messages %}
+        {% include '/layout/commons/notification' %}
+    {% endblock %}
+
     {% block content %}
         {{ content|raw }}
     {% endblock %}
@@ -57,12 +62,6 @@
 {% block bottom_javascripts %}
     {#<script type='text/javascript' src='/js/app.js'></script>#}
 {% endblock %}
-
-
-{% block flash_messages %}
-    {#{% include '/layout/notification' %}#}
-{% endblock %}
-
 
 </body>
 </html>
