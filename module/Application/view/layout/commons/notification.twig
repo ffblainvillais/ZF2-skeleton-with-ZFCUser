@@ -1,0 +1,31 @@
+{# <?php #}
+
+{% macro flashMessageScript(message, type) %}
+    <div class="alert-{{ type }}">{{ message }}</div>
+{% endmacro %}
+
+    {{ (flashMessenger().hasMessages('default')) }}
+    {{ (flashMessenger().hasMessages('info')) }}
+    {{ (flashMessenger().hasMessages('success')) }}
+    {{ (flashMessenger().hasMessages('warning')) }}
+    {{ (flashMessenger().hasMessages('error')) }}
+
+{% if flashMessenger().hasMessages('default') %}
+    {{ _self.flashMessageScript(flashMessenger().render('default'), 'info') }}
+{% endif %}
+
+{% if flashMessenger().hasMessages('info') %}
+    {{ _self.flashMessageScript(flashMessenger().render('info'), 'info') }}
+{% endif %}
+
+{% if flashMessenger().hasMessages('success') %}
+    {{ _self.flashMessageScript(flashMessenger().render('success'), 'success') }}
+{% endif %}
+
+{% if flashMessenger().hasMessages('warning') %}
+    {{ _self.flashMessageScript(flashMessenger().render('warning'), 'warning') }}
+{% endif %}
+
+{% if flashMessenger().hasMessages('error') %}
+    {{ _self.flashMessageScript(flashMessenger().render('error'), 'danger') }}
+{% endif %}
