@@ -1,0 +1,14 @@
+{% extends 'layout/layout' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <section class="login-container">
+
+        <h2 class="form-signin-heading">Connexion</h2>
+
+        {{ form(loginForm) }}
+
+    </section>
+
+{% endblock %}

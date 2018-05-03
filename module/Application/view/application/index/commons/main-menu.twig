@@ -14,9 +14,9 @@
             </ul>
             <ul  style="vertical-align: middle;" class="nav navbar-nav navbar-right">
                 {% if not zfcUserIdentity() %}
-                    <li><a href={{ url('zfcuser/login') }}>Connexion</a></li>
+                    <li><a href={{ url('login') }}>Connexion</a></li>
                 {% else %}
-                    <li ><span style="color : white; "><a href={{ url('zfcuser') }}>{{ zfcUserIdentity.getDisplayname }}()</a> | <a href="{{ url('zfcuser/logout') }}">Deconnexion</a></span></li>
+                    <li ><span style="color : white; "><a href={{ url('zfcuser/logout') }}>{{ zfcUserIdentity.getDisplayname }}()</a> | <a href="{{ url('zfcuser/logout') }}">Deconnexion</a></span></li>
                 {% endif %}
 
             </ul>

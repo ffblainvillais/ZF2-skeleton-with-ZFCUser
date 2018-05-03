@@ -12,9 +12,13 @@ class RegisterControllerFactory implements FactoryInterface
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $registerForm       = $realServiceLocator->get('FormElementManager')->get('registerForm');
+        $loginForm          = $realServiceLocator->get('FormElementManager')->get('loginForm');
+        $registerModel      = $realServiceLocator->get('Register');
 
         return new RegisterController(
-            $registerForm
+            $registerForm,
+            $registerModel,
+            $loginForm
         );
     }
 }

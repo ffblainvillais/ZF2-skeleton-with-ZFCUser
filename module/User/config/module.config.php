@@ -2,12 +2,25 @@
 
 namespace User;
 
+use User\Factory\RegisterFactory;
 use User\Factory\RegisterControllerFactory;
+use User\Form\LoginForm;
 use User\Form\RegisterForm;
 
 return array(
     'router' => array(
         'routes' => array(
+            'login' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/utilisateur/connexion',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'User\Controller',
+                        'controller'    => 'register',
+                        'action'        => 'login',
+                    ),
+                ),
+            ),
             'register' => array(
                 'type'    => 'Segment',
                 'options' => array(
@@ -28,12 +41,13 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            //'SmsNodhos'       => 'Sms\Factory\SmsFactory',
+            'Register'       => RegisterFactory::class,
         ),
     ),
     'form_elements' => array(
         'invokables' => array(
-            'registerForm' => RegisterForm::class,
+            'registerForm'  => RegisterForm::class,
+            'loginForm'     => LoginForm::class,
         ),
     ),
     'view_manager' => array(
