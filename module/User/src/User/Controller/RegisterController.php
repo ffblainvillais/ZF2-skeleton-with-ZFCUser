@@ -35,7 +35,9 @@ class RegisterController extends AbstractActionController
                 return $this->redirect()->toRoute('home');
             }
 
+            $this->flashMessenger()->addErrorMessage('Identifiant ou mot de passe erroné');
             return $this->redirect()->toRoute('login');
+
         } else {
 
             $viewModel      = new ViewModel();
