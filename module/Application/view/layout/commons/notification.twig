@@ -1,14 +1,8 @@
 {# <?php #}
 
 {% macro flashMessageScript(message, type) %}
-    <div class="alert-{{ type }}">{{ message }}</div>
+    <div class="alert alert-{{ type }}">{{ message }}</div>
 {% endmacro %}
-
-    {{ (flashMessenger().hasMessages('default')) }}
-    {{ (flashMessenger().hasMessages('info')) }}
-    {{ (flashMessenger().hasMessages('success')) }}
-    {{ (flashMessenger().hasMessages('warning')) }}
-    {{ (flashMessenger().hasMessages('error')) }}
 
 {% if flashMessenger().hasMessages('default') %}
     {{ _self.flashMessageScript(flashMessenger().render('default'), 'info') }}
@@ -29,3 +23,38 @@
 {% if flashMessenger().hasMessages('error') %}
     {{ _self.flashMessageScript(flashMessenger().render('error'), 'danger') }}
 {% endif %}
+
+{% block bottom_javascripts %}
+    <script>
+
+        //toastr["success"]("My name is Inigo Montoya. You killed my father. Prepare to die!")
+        //@todo finir notification toastr
+
+        {% if flashMessenger().hasMessages('default') == '1'%}
+            var message = {{ flashMessenger().render('default') }}
+            toastr["info"](message)
+        {% endif %}
+
+        {% if flashMessenger().hasMessages('info')  == '1'%}
+            var message = {{ flashMessenger().render('info') }}
+            toastr["info"](message)
+        {% endif %}
+
+        {% if flashMessenger().hasMessages('success')  == '1'%}
+            var message = {{ flashMessenger().render('success') }}
+            toastr["success"](message)
+        {% endif %}
+
+        {% if flashMessenger().hasMessages('warning')  == '1'%}
+            var message = {{ flashMessenger().render('warning') }}
+            toastr["warning"](message)
+        {% endif %}
+
+        {% if flashMessenger().hasMessages('error') == '1'%}
+            var message = {{ flashMessenger().render('error') }}
+            console.log(message)
+            toastr["error"](message)
+        {% endif %}
+
+    </script>
+{% endblock %}
