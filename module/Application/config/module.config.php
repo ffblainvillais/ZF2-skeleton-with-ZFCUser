@@ -96,6 +96,13 @@ return array(
             'zfcuser' => __DIR__ . '/../view',
         ),
     ),
+    'view_helper_config' => array(
+        'flashmessenger' => array(
+            'message_open_format'      => '',
+            'message_close_string'     => '',
+            'message_separator_string' => ''
+        )
+    ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(
