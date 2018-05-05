@@ -11,9 +11,9 @@ return array(
     'router' => array(
         'routes' => array(
             'login' => array(
-                'type'    => 'Segment',
+                'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/utilisateur/connexion',
+                    'route'    => '/connexion',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
                         'controller'    => 'register',
@@ -21,10 +21,21 @@ return array(
                     ),
                 ),
             ),
-            'register' => array(
-                'type'    => 'Segment',
+            'logout' => array(
+                'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/utilisateur/inscription',
+                    'route'    => '/deconnexion',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'User\Controller',
+                        'controller'    => 'register',
+                        'action'        => 'logout',
+                    ),
+                ),
+            ),
+            'register' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/inscription',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
                         'controller'    => 'register',

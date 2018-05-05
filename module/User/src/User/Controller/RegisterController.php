@@ -49,6 +49,13 @@ class RegisterController extends AbstractActionController
         }
     }
 
+    public function logoutAction()
+    {
+        $this->registerModel->logout();
+
+        return $this->redirect()->toRoute('home');
+    }
+
     public function registerAction()
     {
         if ($this->getRequest()->isPost()) {

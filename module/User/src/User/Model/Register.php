@@ -33,6 +33,12 @@ class Register
         return false;
     }
 
+    public function logout()
+    {
+        $auth = new AuthenticationService();
+        $auth->clearIdentity();
+    }
+
     public function register($registerParams)
     {
         $formIsValid    = $this->_registerInformationsAreValid($registerParams);

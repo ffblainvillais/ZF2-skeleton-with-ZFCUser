@@ -16,7 +16,7 @@
                 {% if not zfcUserIdentity() %}
                     <li><a href={{ url('login') }}>Connexion</a></li>
                 {% else %}
-                    <li ><span style="color : white; "><a href={{ url('zfcuser/logout') }}>{{ zfcUserIdentity.getDisplayname }}()</a> | <a href="{{ url('zfcuser/logout') }}">Deconnexion</a></span></li>
+                    <li ><span style="color : white; "><a href="#">bla{{ zfcUserIdentity.getDisplayname }}()</a> | <a href="{{ url('logout') }}">Deconnexion</a></span></li>
                 {% endif %}
 
             </ul>
