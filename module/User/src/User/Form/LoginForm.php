@@ -13,7 +13,7 @@ class LoginForm extends Form implements InputFilterProviderInterface
         parent::__construct();
 
         $this->add(array(
-            'name'      => 'email',
+            'name'      => 'login',
             'options'   => array(
                 'label'     => 'Identifiant',
             ),

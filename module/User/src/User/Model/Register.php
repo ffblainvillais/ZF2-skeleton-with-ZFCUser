@@ -3,7 +3,7 @@
 namespace User\Model;
 
 use User\Form\RegisterForm;
-use ZfcUser\Entity\User;
+use User\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use DoctrineModule\Authentication\Adapter\ObjectRepository as DoctrineAdapter;
 use Zend\Authentication\AuthenticationService;
@@ -19,7 +19,7 @@ class Register
 
     public function login($loginParams)
     {
-        $user = $this->_getUserByEmail($loginParams['email']);
+        $user = $this->_getUserByLogin($loginParams['login']);
 
         if ($user) {
 
@@ -48,8 +48,10 @@ class Register
 
             $user = new User();
 
+            $user->setLogin($registerParams['email']);
             $user->setEmail($registerParams['email']);
-            $user->setUsername($registerParams['username']);
+            $user->setFirstname($registerParams['firstname']);
+            $user->setLastname($registerParams['lastname']);
 
             $bcrypt = new Bcrypt;
             $bcrypt->setCost(11);
@@ -106,9 +108,9 @@ class Register
         return true;
     }
 
-    private function _getUserByEmail($email)
+    private function _getUserByLogin($login)
     {
-        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
+        $user = $this->em->getRepository(User::class)->findOneBy(['login' => $login]);
 
         return $user;
     }

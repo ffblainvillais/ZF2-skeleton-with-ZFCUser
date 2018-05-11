@@ -15,6 +15,30 @@ class RegisterForm extends Form implements InputFilterProviderInterface
         $this->setAttribute('action', '#');
 
         $this->add(array(
+            'name'      => 'firstname',
+            'options'   => array(
+                'label'     => 'Prenom',
+            ),
+            'attributes' => array(
+                'type'          => 'text',
+                'class'         => 'form-control',
+                'placeholder'   => 'Prenom',
+            ),
+        ));
+
+        $this->add(array(
+            'name'      => 'lastname',
+            'options'   => array(
+                'label'     => 'Nom',
+            ),
+            'attributes' => array(
+                'type'          => 'text',
+                'class'         => 'form-control',
+                'placeholder'   => 'Nom',
+            ),
+        ));
+
+        /*$this->add(array(
             'name'      => 'username',
             'options'   => array(
                 'label'     => 'Identifiant',
@@ -33,7 +57,7 @@ class RegisterForm extends Form implements InputFilterProviderInterface
                     ),
                 ),
             ),
-        ));
+        ));*/
 
         $this->add(array(
             'name'      => 'email',
