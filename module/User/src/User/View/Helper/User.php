@@ -26,7 +26,11 @@ class User extends AbstractHelper
         /* @var $user \User\Entity\User */
         $user = $this->userModel->getIdentity();
 
-        return $user->getFirstname();
+        if ($user) {
+            return $user->getFirstname();
+        }
+
+        return null;
     }
 
     public function getIdentity()
