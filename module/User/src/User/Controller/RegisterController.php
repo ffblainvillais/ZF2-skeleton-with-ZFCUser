@@ -60,8 +60,21 @@ class RegisterController extends AbstractActionController
     {
         if ($this->getRequest()->isPost()) {
 
-            $registerParams = $this->params()->fromPost();
-            $this->registerModel->register($registerParams);
+            $registerParams     = $this->params()->fromPost();
+            $registerErrors     = $this->registerModel->register($registerParams);
+
+            if (is_array($registerErrors)) {
+
+                $viewModel      = new ViewModel();
+
+                $viewModel->setTemplate('user/register');
+                $viewModel->setVariables(array(
+                    "registerForm"      => $this->registerForm->setData($registerParams),
+                    "registerErrors"    => $registerErrors,
+                ));
+
+                return $viewModel;
+            }
 
             return $this->redirect()->toRoute('login');
 

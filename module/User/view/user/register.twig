@@ -3,6 +3,18 @@
 {% block content %}
     {{ parent() }}
 
+    {% if registerErrors %}
+
+        <div class="alert alert-danger">
+            <h4>Votre inscription n'est pas valide car elle contient les erreurs suivantes :</h4>
+
+            {% for error in registerErrors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
     <section class="login-container">
 
         <h2 class="form-signin-heading">Inscription</h2>
