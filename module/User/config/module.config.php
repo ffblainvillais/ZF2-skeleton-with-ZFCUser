@@ -4,6 +4,7 @@ namespace User;
 
 use User\Factory\RegisterFactory;
 use User\Factory\RegisterControllerFactory;
+use User\Factory\IndexControllerFactory;
 use User\Factory\UserFactory;
 use User\Form\LoginForm;
 use User\Form\RegisterForm;
@@ -11,13 +12,24 @@ use User\Form\RegisterForm;
 return array(
     'router' => array(
         'routes' => array(
+            'user-page' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/utilisateur',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'User\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
             'login' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/connexion',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
-                        'controller'    => 'register',
+                        'controller'    => 'Register',
                         'action'        => 'login',
                     ),
                 ),
@@ -28,7 +40,7 @@ return array(
                     'route'    => '/deconnexion',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
-                        'controller'    => 'register',
+                        'controller'    => 'Register',
                         'action'        => 'logout',
                     ),
                 ),
@@ -39,7 +51,7 @@ return array(
                     'route'    => '/inscription',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
-                        'controller'    => 'register',
+                        'controller'    => 'Register',
                         'action'        => 'register',
                     ),
                 ),
@@ -48,7 +60,8 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'User\Controller\Register' => RegisterControllerFactory::class,
+            'User\Controller\Register'  => RegisterControllerFactory::class,
+            'User\Controller\Index'     => IndexControllerFactory::class,
         ),
     ),
     'service_manager' => array(

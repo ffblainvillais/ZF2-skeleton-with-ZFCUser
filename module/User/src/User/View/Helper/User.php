@@ -16,11 +16,21 @@ class User extends AbstractHelper
         $this->userModel = $userModel;
     }
 
+    /**
+     * Return true if a User is connected
+     *
+     * @return bool
+     */
     public function isConnected()
     {
         return $this->userModel->isConnected();
     }
 
+    /**
+     * Return firstname of User if connected
+     *
+     * @return null|string
+     */
     public function getDisplayName()
     {
         /* @var $user \User\Entity\User */
@@ -33,6 +43,11 @@ class User extends AbstractHelper
         return null;
     }
 
+    /**
+     * Return entity User if one connected
+     *
+     * @return bool|mixed|null
+     */
     public function getIdentity()
     {
         return $this->userModel->getIdentity();

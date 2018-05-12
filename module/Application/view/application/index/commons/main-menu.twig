@@ -13,10 +13,10 @@
                 <li class="active"><a href="{{ url('home') }}">Accueil</a></li>
             </ul>
             <ul  style="vertical-align: middle;" class="nav navbar-nav navbar-right">
-                {% if not zfcUserIdentity() %}
+                {% if not user().isConnected %}
                     <li><a href={{ url('login') }}>Connexion</a></li>
                 {% else %}
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user().displayName }}</a></li>
+                    <li><a href="{{ url('user-page') }}"><span class="glyphicon glyphicon-user"></span> {{ user().displayName }}</a></li>
                 {% endif %}
 
             </ul>

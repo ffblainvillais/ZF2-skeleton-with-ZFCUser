@@ -1,0 +1,14 @@
+{% extends 'layout/layout' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <section>
+
+        <h2>Espace utilisateur</h2>
+
+        <a href="{{ url('logout') }}"><span class="btn btn-danger">Deconnexion</span></a>
+
+    </section>
+
+{% endblock %}

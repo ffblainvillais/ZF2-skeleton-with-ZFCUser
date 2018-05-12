@@ -14,6 +14,11 @@ class User
         $this->em = $em;
     }
 
+    /**
+     * Return true if one User is connected
+     *
+     * @return bool
+     */
     public function isConnected()
     {
         $auth = new AuthenticationService();
@@ -25,6 +30,11 @@ class User
         return false;
     }
 
+    /**
+     * Return User if one is connected
+     *
+     * @return bool|mixed|null
+     */
     public function getIdentity()
     {
         $auth = new AuthenticationService();
