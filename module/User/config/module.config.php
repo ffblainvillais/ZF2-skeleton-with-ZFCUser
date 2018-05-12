@@ -4,6 +4,7 @@ namespace User;
 
 use User\Factory\RegisterFactory;
 use User\Factory\RegisterControllerFactory;
+use User\Factory\UserFactory;
 use User\Form\LoginForm;
 use User\Form\RegisterForm;
 
@@ -52,7 +53,8 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'Register'       => RegisterFactory::class,
+            'Register'      => RegisterFactory::class,
+            'User'          => UserFactory::class,
         ),
     ),
     'form_elements' => array(
@@ -61,6 +63,11 @@ return array(
             'loginForm'     => LoginForm::class,
         ),
     ),
+    'view_helpers' => [
+        'factories' => [
+            'user'    => \User\View\Helper\Factory\UserFactory::class,
+        ],
+    ],
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
