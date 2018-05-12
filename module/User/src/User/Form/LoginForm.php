@@ -21,6 +21,7 @@ class LoginForm extends Form implements InputFilterProviderInterface
                 'type'          => 'text',
                 'class'         => 'form-control',
                 'placeholder'   => 'Mon email',
+                'required'      => true,
             ),
         ));
 
@@ -34,6 +35,8 @@ class LoginForm extends Form implements InputFilterProviderInterface
                 'type'          => 'password',
                 'class'         => 'form-control',
                 'placeholder'   => 'Mot de passe',
+                'required'      => true,
+
             ),
         ));
 

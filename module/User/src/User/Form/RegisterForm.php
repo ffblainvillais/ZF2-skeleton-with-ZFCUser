@@ -38,27 +38,6 @@ class RegisterForm extends Form implements InputFilterProviderInterface
             ),
         ));
 
-        /*$this->add(array(
-            'name'      => 'username',
-            'options'   => array(
-                'label'     => 'Identifiant',
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'class'         => 'form-control',
-                'placeholder'   => 'Mon identifiant',
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-                        'min' => 3,
-                        'max' => 255,
-                    ),
-                ),
-            ),
-        ));*/
-
         $this->add(array(
             'name'      => 'email',
             'options'   => array(
@@ -82,14 +61,6 @@ class RegisterForm extends Form implements InputFilterProviderInterface
                 'class'         => 'form-control',
                 'placeholder'   => 'Mot de passe',
             ),
-            'validators' => array(
-                array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-                        'min' => 6,
-                    ),
-                ),
-            ),
         ));
 
         $this->add(array(
@@ -102,21 +73,6 @@ class RegisterForm extends Form implements InputFilterProviderInterface
                 'type'          => 'password',
                 'class'         => 'form-control',
                 'placeholder'   => 'Mot de passe',
-
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-                        'min' => 6,
-                    ),
-                ),
-                array(
-                    'name'    => 'Identical',
-                    'options' => array(
-                        'token'     => 'password',
-                    ),
-                ),
             ),
         ));
 
@@ -141,8 +97,36 @@ class RegisterForm extends Form implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
-        return array(
-            /* Filtres et validateurs */
-        );
+        return [
+            'email' => array(
+                'required' => true,
+                'filters'  => [
+                    ['name' => 'Zend\Filter\StringTrim'],
+                ],
+                'validators' => [
+                    new \Zend\Validator\EmailAddress(),
+                ],
+            ),
+            'password' => array(
+                'required'      => true,
+                'validators'    => array(
+                    new \Zend\Validator\StringLength(
+                        array('min' => 6)
+                    ),
+                ),
+            ),
+            'passwordVerify' => array(
+                'required'      => true,
+                'validators'    => array(
+                    new \Zend\Validator\StringLength(
+                        array('min' => 6)
+                    ),
+                    'name'    => new \Zend\Validator\Identical(
+                        array('token' => 'password')
+                    ),
+                ),
+            ),
+        ];
+        return array();
     }
 }
